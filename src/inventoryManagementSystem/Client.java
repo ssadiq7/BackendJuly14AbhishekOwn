@@ -23,5 +23,17 @@ public class Client {
             System.out.println(item.getName() + ": " + item.getPrice());
         }
 
+        System.out.println("**************************************************");
+        Inventory<Electronics> electronicsInventory = new Inventory<>();
+        electronicsInventory.addItem(new Electronics("E1", "Laptop",5 ,  999.99 , 24));
+        electronicsInventory.addItem(new Electronics("E2", "Laptop",5 ,  999.99 , 24));
+        electronicsInventory.addItem(new Electronics("E3", "Mobile",5, 99.99, 24));
+
+        List<Electronics> electronicsList = electronicsInventory.getAllItems();
+        for(Electronics electronics: electronicsList)
+        {
+            System.out.println(electronics.getName());
+        }
+
     }
 }

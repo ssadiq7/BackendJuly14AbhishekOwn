@@ -63,5 +63,32 @@ public class Client {
             System.out.println(item.getName());
         }
 
+        System.out.println("**************************************************");
+        Order order1 = new Order("1", true);
+        Order order2 = new Order("2", false);
+        Order order3 = new Order("3", false);
+        Order order4 = new Order("4", true);
+        Order order5 = new Order("5", true);
+
+        OrderProcessor orderProcessor = new OrderProcessor();
+        orderProcessor.addOrder(order1);
+        orderProcessor.addOrder(order2);
+        orderProcessor.addOrder(order3);
+        orderProcessor.addOrder(order4);
+        orderProcessor.addOrder(order5);
+
+        while (orderProcessor.getSize() > 0)
+        {
+            orderProcessor.processOrder();
+        }
+
+        System.out.println("**************************************************");
+
+        Collections.sort(items, new ItemSortByPriceComparator());
+        System.out.println("Sorted items List based on decreasing prices: ");
+        for (Item item : items) {
+            System.out.println(item.getName() + ": " + item.getPrice());
+        }
+
     }
 }

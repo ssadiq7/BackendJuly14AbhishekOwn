@@ -1,7 +1,6 @@
 package Generics;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Client
 {
@@ -50,6 +49,9 @@ public class Client
 
 //        AnimalUtility.printListPlaceholder(integerList);
 //        AnimalUtility.printFromListGeneric(integerList);
+
+        Set<Integer> integerSet = new HashSet<>();
+        Map<String, Integer> map = new HashMap<>();
 
     }
 }

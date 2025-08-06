@@ -2,6 +2,7 @@ package inventoryManagementSystem;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Client {
@@ -33,6 +34,33 @@ public class Client {
         for(Electronics electronics: electronicsList)
         {
             System.out.println(electronics.getName());
+        }
+
+        System.out.println("**************************************************");
+
+        Item item2 = new Electronics("E2", "Mobile", 5 , 999.99, 24);
+        Item item3 = new Electronics("E3", "Watch", 5 , 999.99, 24);
+        Item item4 = new Electronics("E4", "Ipad", 5 , 999.99, 24);
+        Item item5 = new Electronics("E5", "Speaker", 5 , 999.99, 24);
+        Item item6 = new Book("B1", "Java Programming", 50, 59.99, "John Doe");
+        Item item7 = new Book("B2", "Python Programming", 50, 59.99, "Jane Doe");
+
+
+        RecentlyViewedItems recentlyViewedItems = new RecentlyViewedItems();
+
+        recentlyViewedItems.addRecentlyViewedItem(item3);
+        recentlyViewedItems.addRecentlyViewedItem(item2);
+        recentlyViewedItems.addRecentlyViewedItem(item5);
+        recentlyViewedItems.addRecentlyViewedItem(item2);
+        recentlyViewedItems.addRecentlyViewedItem(item5);
+        recentlyViewedItems.addRecentlyViewedItem(item4);
+        recentlyViewedItems.addRecentlyViewedItem(item6);
+        recentlyViewedItems.addRecentlyViewedItem(item7);
+
+        List<Item> recentlyViewedItemsList = recentlyViewedItems.getItemsList();
+        for (Item item : recentlyViewedItemsList)
+        {
+            System.out.println(item.getName());
         }
 
     }

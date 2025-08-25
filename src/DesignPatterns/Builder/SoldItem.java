@@ -20,4 +20,9 @@ public class SoldItem
         this.available = builder.isAvailable();
         this.weight = builder.getWeight();
     }
+
+    public static SoldItemBuilder getBuilder()
+    {
+        return new SoldItemBuilder();
+    }
 }

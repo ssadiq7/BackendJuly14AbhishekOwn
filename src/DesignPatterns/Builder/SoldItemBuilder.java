@@ -10,32 +10,45 @@ public class SoldItemBuilder
     private boolean available;
     private double weight;
 
-    public void setId(long id) {
+    public SoldItem build()
+    {
+        return new SoldItem(this);
+    }
+
+    public SoldItemBuilder setId(long id)
+    {
         this.id = id;
+        return this;
     }
 
-    public void setName(String name) {
+    public SoldItemBuilder setName(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setPrice(double price) {
+    public SoldItemBuilder setPrice(double price) {
         this.price = price;
+        return this;
     }
 
-    public void setDiscount(double discount) {
+    public SoldItemBuilder setDiscount(double discount) {
         this.discount = discount;
+        return this;
     }
 
-    public void setQuantity(int quantity) {
+    public SoldItemBuilder setQuantity(int quantity) {
         this.quantity = quantity;
+        return this;
     }
 
-    public void setAvailable(boolean available) {
+    public SoldItemBuilder setAvailable(boolean available) {
         this.available = available;
+        return this;
     }
 
-    public void setWeight(double weight) {
+    public SoldItemBuilder setWeight(double weight) {
         this.weight = weight;
+        return this;
     }
 
     public long getId() {

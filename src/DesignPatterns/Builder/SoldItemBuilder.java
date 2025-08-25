@@ -10,10 +10,10 @@ public class SoldItemBuilder
     private boolean available;
     private double weight;
 
-    public SoldItem build()
-    {
-        return new SoldItem(this);
-    }
+//    public SoldItem build()
+//    {
+//        return new SoldItem(this);
+//    }
 
     public SoldItemBuilder setId(long id)
     {

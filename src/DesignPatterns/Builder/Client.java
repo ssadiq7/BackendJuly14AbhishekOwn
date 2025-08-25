@@ -22,14 +22,6 @@ public class Client
                 .build();
 
 //        SoldItemBuilder soldItemBuilder = SoldItem.getBuilder();
-//        soldItemBuilder.setId(1);
-//        soldItemBuilder.setName("Sold Item");
-//        soldItemBuilder.setPrice(23.4);
-//        soldItemBuilder.setDiscount(0.2);
-//        soldItemBuilder.setQuantity(10);
-//        soldItemBuilder.setAvailable(true);
-//        soldItemBuilder.setWeight(89.34);
-//
 //        SoldItem soldItem1 = new SoldItem(soldItemBuilder);
     }
 }

@@ -12,31 +12,22 @@ public class Client
     public static void main(String[] args)
     {
         Platform p = new Android();
-        Button button;
-        Dropdown dropdown;
-        if(p instanceof Android)
-        {
-            button = new AndroidButton();
-        }else if (p instanceof IOS)
-        {
-            button = new IOSButton();
-        }else {
-            throw new IllegalArgumentException("Platform type not supported");
-        }
+        Button button = p.createButton();
+//        Dropdown dropdown;
 
-        if(p instanceof Android)
-        {
-            dropdown = new AndroidDropdown();
-        }else if (p instanceof IOS)
-        {
-            dropdown = new IOSDropdown();
-        }else {
-            throw new IllegalArgumentException("Platform type not supported");
-        }
+
+//        if(p instanceof Android)
+//        {
+//            dropdown = new AndroidDropdown();
+//        }else if (p instanceof IOS)
+//        {
+//            dropdown = new IOSDropdown();
+//        }else {
+//            throw new IllegalArgumentException("Platform type not supported");
+//        }
 
         button.click();
-        dropdown.showOptions();
+//        dropdown.showOptions();
 
-        // HW: Move this logic to other class, and implement Simple Factory
     }
 }

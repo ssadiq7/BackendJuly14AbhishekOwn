@@ -1,6 +1,7 @@
 package DesignPatterns.Factory;
 
 import DesignPatterns.Factory.components.button.Button;
+import DesignPatterns.Factory.components.dropdown.Dropdown;
 
 public abstract class Platform
 {
@@ -9,5 +10,5 @@ public abstract class Platform
         System.out.println("Platform set refresh");
     }
 
-    public abstract Button createButton();
+    public abstract UIComponentFactory getUIComponentFactory();
 }

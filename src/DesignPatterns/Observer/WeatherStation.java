@@ -20,5 +20,9 @@ public class WeatherStation
         weatherData.removeObserver(currentStatsDisplay);
         weatherData.setParams(3.3f, 6.9f, 2.1f);
 
+        currentStatsDisplay.registerWithSubject(weatherData);
+        weatherData.setParams(59.3f, 68.9f, 99.1f);
+
+
     }
 }

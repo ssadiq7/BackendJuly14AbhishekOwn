@@ -22,4 +22,9 @@ public class CurrentStatsDisplay implements Observer, Display
         System.out.println("Current stats display: Humidity: " + this.humidity);
         System.out.println("Current stats display: Pressure: " + this.pressure);
     }
+
+    public void registerWithSubject(Subject subject)
+    {
+        subject.registerObserver(this);
+    }
 }

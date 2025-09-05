@@ -5,6 +5,11 @@ public class CurrentStatsDisplay implements Observer, Display
     private float temperature;
     private float humidity;
     private float pressure;
+    private Subject subject;
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
 
     @Override
     public void update(float temp, float humidity, float pressure)
@@ -23,7 +28,7 @@ public class CurrentStatsDisplay implements Observer, Display
         System.out.println("Current stats display: Pressure: " + this.pressure);
     }
 
-    public void registerWithSubject(Subject subject)
+    public void registerWithSubject()
     {
         subject.registerObserver(this);
     }

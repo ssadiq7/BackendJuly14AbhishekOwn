@@ -1,4 +1,7 @@
 package TicTacToe.models;
 
-public enum CellType {
+public enum CellType
+{
+    FILLED,
+    EMPTY
 }

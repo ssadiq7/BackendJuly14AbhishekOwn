@@ -1,4 +1,7 @@
 package TicTacToe.models;
 
-public enum PlayerType {
+public enum PlayerType
+{
+    BOT,
+    HUMAN
 }

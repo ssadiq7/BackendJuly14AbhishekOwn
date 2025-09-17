@@ -25,4 +25,20 @@ public class Game
         this.moves = new ArrayList<>();
         this.winner = null;
     }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public List<Move> getMoves() {
+        return moves;
+    }
+
+    public List<WinningStrategy> getWinningStrategies() {
+        return winningStrategies;
+    }
 }

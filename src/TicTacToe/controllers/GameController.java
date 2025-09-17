@@ -28,6 +28,7 @@ public class GameController
     {
         System.out.println("Please input the size of the board");
         int size = scanner.nextInt();
+        scanner.nextLine(); /* Mitigate the ArrayIndexOutOfBound Exception from scanner for taking name and symbol together*/
         return size;
     }
 
@@ -48,10 +49,9 @@ public class GameController
     }
 
 //    Game -> Board -> Cell
-
-    public void displayBoard()
+    public void displayBoard(Game game)
     {
-        // TODO
+        game.getBoard().display();
     }
 
     public void makeMove()

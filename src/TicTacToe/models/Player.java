@@ -13,4 +13,8 @@ public abstract class Player
         this.symbol = symbol;
         this.playerType = playerType;
     }
+
+    public Symbol getSymbol() {
+        return symbol;
+    }
 }

@@ -12,12 +12,12 @@ public class GameClient
 
 //        * 1. Start the game
         Game game = gameController.startGame();
-
+        gameController.displayBoard(game);
 //        * 2. Keep playing until GameState is IN_PROGRESS
-        while (game.getGameState() == GameState.IN_PROGRESS)
+        while (game.getGameState() == GameState.INIT)
         {
 //        *   i. Display the board
-            gameController.displayBoard();
+            gameController.displayBoard(game);
 
 //        *   ii. Make move
             gameController.makeMove();

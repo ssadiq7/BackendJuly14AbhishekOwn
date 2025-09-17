@@ -41,4 +41,8 @@ public class Game
     public List<WinningStrategy> getWinningStrategies() {
         return winningStrategies;
     }
+
+    public Board getBoard() {
+        return board;
+    }
 }

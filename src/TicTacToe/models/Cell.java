@@ -14,4 +14,15 @@ public class Cell
         this.player = null;
         this.cellType = CellType.EMPTY;
     }
+
+    public void display()
+    {
+        if(cellType.equals(CellType.EMPTY))
+        {
+            System.out.print("|-|");
+        }else
+        {
+            System.out.print("|" + player.getSymbol().getSym() + "|");
+        }
+    }
 }

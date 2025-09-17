@@ -1,0 +1,39 @@
+Q1.
+How well the designs shows the entities?
+Evaluator's Score
+8.0/10
+Evaluator's Feedback
+Evaluator 1
+The design captures most of the key entities required for a Snake and Ladder game. Strengths include clear representation of essential components like Board, Player, Dice, Snake, Ladder, and Game. The Board class appropriately contains snakes and ladders collections, and the Game class manages the overall game flow. However, there are some areas for improvement: The Cell class has row and col attributes suggesting a 2D grid, but Snake and Ladder traditionally works with a 1D board of 100 cells. The Symbol class seems unnecessary and overcomplicates the design. For better representation, consider: ```java public class Cell { private int position; // 1-100 position on board private CellType cellType; // Normal, Snake Head, Snake Tail, etc. // Other properties and methods } ```
+
+Q2.
+How easy would it be to add future scope requirements?
+Evaluator's Score
+7.0/10
+Evaluator's Feedback
+Evaluator 1
+The design has some flexibility for extension through the WinningStrategy interface and GameState enum. The use of interfaces like WinningStrategy allows for different winning conditions to be implemented in the future. However, the design could be more extensible in several areas. The Dice class is tightly coupled with the DiceNumber enum, making it difficult to introduce custom dice with different numbers of faces. Move class has mixed responsibilities handling both player movement and dice rolling. For better extensibility, consider separating these concerns: ```java public interface DiceRollStrategy { int rollDice(); } public class StandardDiceRoll implements DiceRollStrategy { public int rollDice() { return (int)(Math.random() * 6) + 1; } } public class Dice { private DiceRollStrategy rollStrategy; public Dice(DiceRollStrategy rollStrategy) { this.rollStrategy = rollStrategy; } public int roll() { return rollStrategy.rollDice(); } } ```
+
+Q3.
+How well the designs follow SOLID principles?
+Evaluator's Score
+6.0/10
+Evaluator's Feedback
+Evaluator 1
+The design shows some adherence to SOLID principles but has room for improvement. The Single Responsibility Principle is followed in separating concerns between Board, Player, and Game classes. The Open/Closed Principle is partially addressed with the WinningStrategy interface. However, there are several violations: The Move class violates SRP by both representing a move and handling dice rolling. The Game class has too many responsibilities (managing players, board, dice, moves) violating SRP. The Dependency Inversion Principle is not well-implemented as high-level modules directly depend on low-level modules. To improve SOLID adherence, consider: ```java public interface MovementStrategy { Cell getNextPosition(Board board, Cell currentPosition, int diceValue); } public class StandardMovement implements MovementStrategy { public Cell getNextPosition(Board board, Cell currentPosition, int diceValue) { int newPosition = currentPosition.getPosition() + diceValue; Cell nextCell = board.getCellAtPosition(newPosition); // Check for snake or ladder return board.getDestinationCell(nextCell); } } ```
+
+Q4.
+How well the design is using Interfaces, Abstract classes correctly ?
+Evaluator's Score
+6.0/10
+Evaluator's Feedback
+Evaluator 1
+The design makes limited use of interfaces and no use of abstract classes. The WinningStrategy interface is a positive aspect, allowing for different winning conditions to be implemented. However, there are missed opportunities for abstraction and polymorphism. The design could benefit from interfaces for movement strategies, player behaviors, or board elements. The Dice and Move classes could be abstracted to allow for different implementations. Consider adding: ```java public abstract class BoardElement { protected Cell startCell; protected Cell endCell; public BoardElement(Cell startCell, Cell endCell) { this.startCell = startCell; this.endCell = endCell; } public abstract Cell getDestination(); } public class Snake extends BoardElement { public Snake(Cell mouth, Cell tail) { super(mouth, tail); } @Override public Cell getDestination() { return endCell; // Moving down to tail } } public class Ladder extends BoardElement { public Ladder(Cell bottom, Cell top) { super(bottom, top); } @Override public Cell getDestination() { return endCell; // Climbing up to top } } ```
+
+Q5.
+How well the design is creating relationships between the entities like Inheritance, Composition, Aggregation etc ?
+Evaluator's Score
+7.0/10
+Evaluator's Feedback
+Evaluator 1
+The design shows a good understanding of relationships between entities, using composition and aggregation appropriately in many cases. Game properly composes Board, Dice, and WinningStrategy which is correct as these components can't exist independently of the game. The Board aggregates Cell objects which is appropriate. However, there are some relationship issues: Snake and Ladder directly reference Cell objects rather than having a clearer relationship with the Board. The Player-Symbol relationship seems like unnecessary composition when a simple string attribute would suffice. To improve relationships, consider implementing inheritance for special cells: ```java public class Board { private List cells = new ArrayList<>(100); public Board(List snakes, List ladders) { // Initialize 100 normal cells for(int i = 1; i <= 100; i++) { cells.add(new NormalCell(i)); } // Replace normal cells with special cells for snakes and ladders for(Snake snake : snakes) { int position = snake.getStartPosition(); cells.set(position-1, new SnakeCell(position, snake.getEndPosition())); } for(Ladder ladder : ladders) { int position = ladder.getStartPosition(); cells.set(position-1, new LadderCell(position, ladder.getEndPosition())); } } public Cell getCell(int position) { return cells.get(position-1); } } ```

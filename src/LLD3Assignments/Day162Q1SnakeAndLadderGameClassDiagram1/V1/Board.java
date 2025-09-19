@@ -40,4 +40,12 @@ public class Board {
     public Cell getCell(int position) {
         return cells.get(position-1);
     }*/
+
+    public Cell getCellAtPosition(int newPosition) {
+        return null;
+    }
+
+    public Cell getDestinationCell(Cell nextCell) {
+        return null;
+    }
 }

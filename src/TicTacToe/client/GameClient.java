@@ -16,11 +16,8 @@ public class GameClient
 //        * 2. Keep playing until GameState is IN_PROGRESS
         while (game.getGameState() == GameState.IN_PROGRESS)
         {
-//        *   i. Display the board
-            gameController.displayBoard(game);
-
-//        *   ii. Make move
             gameController.makeMove(game);
+            gameController.displayBoard(game);
         }
 
 //        * 3. Check winner and declare the result

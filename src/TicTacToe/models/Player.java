@@ -17,4 +17,10 @@ public abstract class Player
     public Symbol getSymbol() {
         return symbol;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public abstract Move makeMove(Board board);
 }

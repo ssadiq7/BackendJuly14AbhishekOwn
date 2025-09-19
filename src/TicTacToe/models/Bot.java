@@ -18,6 +18,7 @@ public class Bot extends Player
     @Override
     public Move makeMove(Board board)
     {
+        System.out.println("Hey " +this.getName() + ", it's your turn.");
         return botDifficultStrategy.makeMove(board, this);
     }
 }

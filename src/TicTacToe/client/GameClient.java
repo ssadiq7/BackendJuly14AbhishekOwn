@@ -4,8 +4,11 @@ import TicTacToe.controllers.GameController;
 import TicTacToe.models.Game;
 import TicTacToe.models.GameState;
 
+import java.util.Scanner;
+
 public class GameClient
 {
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args)
     {
         GameController gameController = new GameController();
@@ -16,11 +19,17 @@ public class GameClient
 //        * 2. Keep playing until GameState is IN_PROGRESS
         while (game.getGameState() == GameState.IN_PROGRESS)
         {
-//        *   i. Display the board
+            gameController.makeMove(game);
             gameController.displayBoard(game);
 
-//        *   ii. Make move
-            gameController.makeMove(game);
+            System.out.println("Do you want to undo the last move? [Y/N]");
+            String input = scanner.nextLine();
+            if(input.equalsIgnoreCase("Y"))
+            {
+                gameController.undo(game);
+                System.out.println("Undo completed!");
+                gameController.displayBoard(game);
+            }
         }
 
 //        * 3. Check winner and declare the result

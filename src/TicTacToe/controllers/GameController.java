@@ -1,6 +1,7 @@
 package TicTacToe.controllers;
 
 import TicTacToe.models.*;
+import TicTacToe.strategies.RowWinningStrategy;
 import TicTacToe.strategies.WinningStrategy;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class GameController
 
         // 3. Ask for the winning strategies: TODO
         List<WinningStrategy> winningStrategies = new ArrayList<>();
+        winningStrategies.add(new RowWinningStrategy());
 
         return new Game(size, players, winningStrategies);
     }
@@ -34,10 +36,21 @@ public class GameController
 
     public List<Player> getPlayerList(int size)
     {
-        System.out.println("Please enter the player details");
+        System.out.println("Let's add the players to the board");
         List<Player> playerList = new ArrayList<>();
-        // Add extension for bot
-        for (int i = 0; i < size - 1; i++)
+
+        System.out.println("Do you want a bot? [Y/N]");
+        int currentSizeOfPlayers = size - 1;
+        String input = scanner.nextLine();
+        if(input.equalsIgnoreCase("Y"))
+        {
+            Player player = new Bot(-1, "Boltu", new Symbol("B"), PlayerType.BOT, BotDifficultyLevel.EASY);
+            playerList.add(player);
+            currentSizeOfPlayers--;
+        }
+
+        System.out.println("Please enter the player details");
+        for (int i = 0; i < currentSizeOfPlayers; i++)
         {
             System.out.println("Player detail format: name symbol");
             String[] details = scanner.nextLine().split(" ");
@@ -57,5 +70,10 @@ public class GameController
     public void makeMove(Game game)
     {
         game.makeMove();
+    }
+
+    public void undo(Game game)
+    {
+        game.undo();
     }
 }

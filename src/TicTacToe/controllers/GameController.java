@@ -1,6 +1,7 @@
 package TicTacToe.controllers;
 
 import TicTacToe.models.*;
+import TicTacToe.strategies.RowWinningStrategy;
 import TicTacToe.strategies.WinningStrategy;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class GameController
 
         // 3. Ask for the winning strategies: TODO
         List<WinningStrategy> winningStrategies = new ArrayList<>();
+        winningStrategies.add(new RowWinningStrategy());
 
         return new Game(size, players, winningStrategies);
     }

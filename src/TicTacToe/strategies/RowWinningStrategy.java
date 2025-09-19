@@ -2,6 +2,7 @@ package TicTacToe.strategies;
 
 import TicTacToe.models.Board;
 import TicTacToe.models.Move;
+import TicTacToe.models.Symbol;
 
 import java.util.HashMap;
 
@@ -27,6 +28,14 @@ public class RowWinningStrategy implements WinningStrategy
         rowMap.get(row).put(symbol, rowMap.get(row).get(symbol) + 1);
 
         return rowMap.get(row).get(symbol)  == board.getSize();
+    }
+
+    @Override
+    public void handleUndo(Move move) {
+        int row = move.getCell().getRow();
+        String symbol = move.getPlayer().getSymbol().getSym();
+
+        rowMap.get(row).put(symbol, rowMap.get(row).get(symbol) - 1);
     }
 }
 

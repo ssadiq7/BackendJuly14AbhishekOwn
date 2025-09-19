@@ -129,4 +129,30 @@ public class Game
             gameState = GameState.DRAW;
         }
     }
+
+    public void undo()
+    {
+        if(moves.isEmpty())
+        {
+            System.out.println("Nothing to undo!");
+            return;
+        }
+
+        Move lastMove = moves.get(moves.size() - 1);
+        for (WinningStrategy winningStrategy : winningStrategies)
+        {
+            winningStrategy.handleUndo(lastMove);
+        }
+
+        Cell cell = lastMove.getCell();
+        cell.setCellType(CellType.EMPTY);
+        cell.setPlayer(null);
+
+        nextPlayerIndex--;
+        nextPlayerIndex = (nextPlayerIndex + players.size()) % players.size();
+
+        moves.remove(lastMove);
+        winner = null;
+        gameState = GameState.IN_PROGRESS;
+    }
 }

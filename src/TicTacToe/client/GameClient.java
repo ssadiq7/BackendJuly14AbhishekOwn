@@ -12,16 +12,24 @@ public class GameClient
 
 //        * 1. Start the game
         Game game = gameController.startGame();
-        gameController.displayBoard(game);
+
 //        * 2. Keep playing until GameState is IN_PROGRESS
-        while (game.getGameState() == GameState.INIT)
+        while (game.getGameState() == GameState.IN_PROGRESS)
         {
 //        *   i. Display the board
             gameController.displayBoard(game);
 
 //        *   ii. Make move
-            gameController.makeMove();
+            gameController.makeMove(game);
         }
+
 //        * 3. Check winner and declare the result
+        if (game.getGameState() == GameState.SUCCESS)
+        {
+            System.out.println("Game Over! The winner is: " + game.getWinner().getName());
+        } else if (game.getGameState() == GameState.DRAW) {
+            System.out.println("The game ended in a draw");
+        }
+        gameController.displayBoard(game);
     }
 }

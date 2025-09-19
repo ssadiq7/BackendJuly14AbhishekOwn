@@ -33,4 +33,17 @@ public class Board
             System.out.println();
         }
     }
+
+    public int getSize() {
+        return size;
+    }
+
+    public List<List<Cell>> getGrid() {
+        return grid;
+    }
+
+    public Cell getCell(int row, int col)
+    {
+        return grid.get(row).get(col);
+    }
 }

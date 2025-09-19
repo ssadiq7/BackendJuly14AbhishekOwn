@@ -54,8 +54,8 @@ public class GameController
         game.getBoard().display();
     }
 
-    public void makeMove()
+    public void makeMove(Game game)
     {
-        // TODO
+        game.makeMove();
     }
 }

@@ -8,6 +8,16 @@ public class BaseModel
     private Date createdAt;
     private Date lastModified;
 
+    public BaseModel()
+    {
+        this(-1);
+    }
+
+    public BaseModel(int id)
+    {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

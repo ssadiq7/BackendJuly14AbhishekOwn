@@ -1,5 +1,7 @@
 package ParkingLot.models;
 
+import ParkingLot.strategies.SlotAllotmentTypeStrategy;
+
 import java.util.List;
 
 public class ParkingLot extends BaseModel
@@ -10,6 +12,15 @@ public class ParkingLot extends BaseModel
     private int maxCapacity;
     private List<VehicleType> vehicleTypes;
     private Status parkingLotStatus;
+    private SlotAllotmentTypeStrategy slotAllotmentTypeStrategy;
+
+    public SlotAllotmentTypeStrategy getSlotAllotmentTypeStrategy() {
+        return slotAllotmentTypeStrategy;
+    }
+
+    public void setSlotAllotmentTypeStrategy(SlotAllotmentTypeStrategy slotAllotmentTypeStrategy) {
+        this.slotAllotmentTypeStrategy = slotAllotmentTypeStrategy;
+    }
 
     public int getMaxCapacity() {
         return maxCapacity;

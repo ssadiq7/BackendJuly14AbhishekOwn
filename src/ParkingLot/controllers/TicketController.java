@@ -4,13 +4,13 @@ import ParkingLot.dtos.IssueRequestDto;
 import ParkingLot.dtos.IssueResponseDto;
 import ParkingLot.dtos.ResponseStatus;
 import ParkingLot.models.Ticket;
-import ParkingLot.services.TicketService;
+import ParkingLot.services.ITicketService;
 
 public class TicketController
 {
-    private final TicketService ticketService;
+    private final ITicketService ticketService;
 
-    public TicketController(TicketService ticketService)
+    public TicketController(ITicketService ticketService)
     {
         this.ticketService = ticketService;
     }

@@ -11,6 +11,7 @@ import ParkingLot.repositories.ParkingLotRepository;
 import ParkingLot.repositories.TicketRepository;
 import ParkingLot.repositories.VehicleRepository;
 import ParkingLot.services.ITicketService;
+import ParkingLot.services.InitialisationService;
 import ParkingLot.services.TicketService;
 
 public class Client
@@ -31,7 +32,11 @@ public class Client
         issueRequestDto.setParkingLotId(1);
         issueRequestDto.setOperatorId(1);
         issueRequestDto.setEntryGateId(1);
-        issueRequestDto.setVehicleType(VehicleType.HEAVY);
+        issueRequestDto.setVehicleType(VehicleType.FOUR_WHEELER);
+
+        InitialisationService initialisationService
+                = new InitialisationService(parkingLotRepository);
+        initialisationService.initialise();
 
         IssueResponseDto issueResponseDto =
                 ticketController.issueTicket(issueRequestDto);
@@ -42,7 +47,7 @@ public class Client
             System.out.println(issueResponseDto.getFailureMessage());
         }else
         {
-        System.out.println("Ticket generated! Slot: " + issueResponseDto.getParkingSlot());
+        System.out.println("Ticket generated! Slot: " + issueResponseDto.getParkingSlot().getNumber());
         }
     }
 }

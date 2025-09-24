@@ -4,7 +4,7 @@ import ParkingLot.controllers.TicketController;
 import ParkingLot.dtos.IssueRequestDto;
 import ParkingLot.dtos.IssueResponseDto;
 import ParkingLot.dtos.ResponseStatus;
-import ParkingLot.models.Ticket;
+
 import ParkingLot.models.VehicleType;
 import ParkingLot.repositories.GateRepository;
 import ParkingLot.repositories.ParkingLotRepository;
@@ -47,7 +47,7 @@ public class Client
             System.out.println(issueResponseDto.getFailureMessage());
         }else
         {
-        System.out.println("Ticket generated! Slot: " + issueResponseDto.getParkingSlot().getNumber());
+        System.out.println("Ticket generated! Slot: " + issueResponseDto.getParkingSlotNumber());
         }
     }
 }

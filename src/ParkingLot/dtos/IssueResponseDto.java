@@ -7,14 +7,14 @@ public class IssueResponseDto
     private int ticketId;
     private ResponseStatus responseStatus;
     private String failureMessage;
-    private ParkingSlot parkingSlot;
+    private String parkingSlotNumber;
 
-    public ParkingSlot getParkingSlot() {
-        return parkingSlot;
+    public String getParkingSlotNumber() {
+        return parkingSlotNumber;
     }
 
-    public void setParkingSlot(ParkingSlot parkingSlot) {
-        this.parkingSlot = parkingSlot;
+    public void setParkingSlotNumber(String parkingSlotNumber) {
+        this.parkingSlotNumber = parkingSlotNumber;
     }
 
     public int getTicketId() {

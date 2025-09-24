@@ -25,7 +25,7 @@ public class TicketController
 
             issueResponseDto.setTicketId(ticket.getId());
             issueResponseDto.setResponseStatus(ResponseStatus.SUCCESS);
-            issueResponseDto.setParkingSlot(ticket.getParkingSlot());
+            issueResponseDto.setParkingSlotNumber(ticket.getParkingSlot().getNumber());
         } catch (Exception e) {
             issueResponseDto.setResponseStatus(ResponseStatus.FAILURE);
             issueResponseDto.setFailureMessage(e.getMessage());

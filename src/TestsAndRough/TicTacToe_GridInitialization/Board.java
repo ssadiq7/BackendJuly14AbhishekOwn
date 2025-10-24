@@ -33,16 +33,20 @@ public class Board {
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid.get(i).size(); j++) {
                 if(grid.get(i).get(j).getPlayer() == null) {
-                    mark = "-";
+//                    mark = "-";
+                    mark = i + "," + j;
                     System.out.print("|"+mark+"|");
                 }
                 else {
-                    mark = grid.get(i).get(j).getPlayer().getSymbol().getSymbolName();
-                    System.out.print("|"+mark+"|");
+                    mark = grid.get(i).get(j).getPlayer().getSym().getSymbolName();
+                    System.out.print("| "+mark+" |");
                 }
+//                System.out.print("| "+mark+" |");
             }
             System.out.println();
         }
     }
+
+
 
 }

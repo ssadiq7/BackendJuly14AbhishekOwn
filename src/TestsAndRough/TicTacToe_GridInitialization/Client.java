@@ -1,5 +1,6 @@
 package TestsAndRough.TicTacToe_GridInitialization;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Client {
@@ -17,15 +18,66 @@ public class Client {
 
         input = scanner.nextLine();
 
-        System.out.println("input => " + input);
+//        System.out.println("input => " + input);
 
         int n = Integer.parseInt(input);
-        System.out.println("number => " + n);
+//        System.out.println("number => " + n);
 
         game.initializeBoard(n);
         game.displayBoard();
 
+        System.out.println("Enter the name and symbol for Player 1: Example: Robo X");
+        input = scanner.nextLine();
+//        System.out.println("input => " + input);
 
+        // Split the input based on space
+        String[] parts = input.split(" ");
+        String player1Name = parts[0];
+        String player1Symbol = parts[1];
+//        System.out.println("Player 1 Name: " + player1Name);
+//        System.out.println("Player 1 Symbol: " + player1Symbol);
+        Player player1 = new Player(player1Name, new Symbol(player1Symbol), 1);
+        game.addPlayer(player1);
+        System.out.println("Player 1 added: " + player1.getName() + " with symbol " + player1.getSym().getSymbolName());
+
+        System.out.println("Enter the name and symbol for Player 2: Example: Android O");
+        input = scanner.nextLine();
+        parts = input.split(" ");
+        String player2Name = parts[0];
+        String player2Symbol = parts[1];
+        Player player2 = new Player(player2Name, new Symbol(player2Symbol), 2);
+        game.addPlayer(player2);
+        System.out.println("Player 2 added: " + player2.getName() + " with symbol " + player2.getSym().getSymbolName());
+
+        System.out.println("Let the game begin!");
+        game.setGameStatus(GameStatus.IN_PROGRESS);
+
+        Random random = new Random();
+        int currPlayerIndex = random.nextInt(2); // Generates 0 or 1
+//        game.setCurrPlayerIndex(randomNumber);
+
+        while(game.getGameStatus() == GameStatus.IN_PROGRESS) {
+
+            game.displayBoard();
+
+            Move move = game.makeMove(currPlayerIndex);
+
+            try {
+                game.validateMove(move);
+            } catch (InvalidMoveException e) {
+                System.out.println(e.getMessage() + "Try again!");
+                continue; // Skip to the next iteration to let the same player try again
+            }
+
+            game.updateBoard(move);
+
+            currPlayerIndex = game.switchPlayer();
+
+//            game.checkWinner();
+//            game.displayBoard();
+//            break; // Placeholder to avoid infinite loop in this example
+
+        }
 
     }
 

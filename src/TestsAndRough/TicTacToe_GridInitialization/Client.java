@@ -71,11 +71,25 @@ public class Client {
 
             game.updateBoard(move);
 
-            currPlayerIndex = game.switchPlayer();
 
-//            game.checkWinner();
+
+            if(game.checkWinner(move)) {
+                game.setGameStatus(GameStatus.WON);
+                game.displayBoard();
+                System.out.println("Player " + move.getPlayer().getName() + " has won the game!");
+//                break;
+            }
+
+            if(game.isBoardFull()) {
+                game.setGameStatus(GameStatus.DRAW);
+                System.out.println("The game is a draw!");
+                game.displayBoard();
+//                break;
+            }
+
 //            game.displayBoard();
 //            break; // Placeholder to avoid infinite loop in this example
+            currPlayerIndex = game.switchPlayer();
 
         }
 

@@ -1,8 +1,12 @@
 package TestsAndRough.TicTacToe_GridInitialization;
 
+import TestsAndRough.TicTacToe_GridInitialization.strategies.ColumnWinningStrategy;
+import TestsAndRough.TicTacToe_GridInitialization.strategies.LeftDiagonalWinningStrategy;
+import TestsAndRough.TicTacToe_GridInitialization.strategies.RowWinningStrategy;
+import TestsAndRough.TicTacToe_GridInitialization.strategies.WinningStrategy;
+
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Game {
 
@@ -113,6 +117,33 @@ public class Game {
 
         board.getGrid().get(row).get(col).setCellType(CellType.OCCUPIED);
         board.getGrid().get(row).get(col).setPlayer(move.getPlayer());
+    }
+
+    public boolean checkWinner(Move move) {
+
+        WinningStrategy rowWinningStrategy = new RowWinningStrategy();
+        WinningStrategy columnWinningStrategy = new ColumnWinningStrategy();
+        WinningStrategy diagonalWinningStrategy = new LeftDiagonalWinningStrategy();
+
+        if(rowWinningStrategy.checkWinner(board, move) || columnWinningStrategy.checkWinner(board, move) || diagonalWinningStrategy.checkWinner(board, move)) {
+            this.gameStatus = GameStatus.WON;
+//            System.out.println("Player " + move.getPlayer().getName() + " has won the game!");
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public boolean isBoardFull() {
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if (board.getGrid().get(i).get(j).getCellType().equals(CellType.EMPTY)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

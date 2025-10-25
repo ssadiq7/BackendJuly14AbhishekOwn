@@ -92,7 +92,13 @@ public class Game {
 
         Player currentPlayer = players.get(currPlayerIndex);
 
-        return currentPlayer.makeMove(board);
+        Move move = currentPlayer.makeMove(board);
+
+        if(move == null) {
+            return null;
+        }
+
+        return move;
 
     }
 
@@ -141,10 +147,23 @@ public class Game {
 //        WinningStrategy columnWinningStrategy = new ColumnWinningStrategy();
 //        WinningStrategy diagonalWinningStrategy = new LeftDiagonalWinningStrategy();
 
-        if(rowWinningStrategy.checkWinner(board, move) || columnWinningStrategy.checkWinner(board, move)
-                || leftDiagonalWinningStrategy.checkWinner(board, move) || rightDiagonalWinningStrategy.checkWinner(board, move)) {
-            this.gameStatus = GameStatus.WON;
-//            System.out.println("Player " + move.getPlayer().getName() + " has won the game!");
+//        if(rowWinningStrategy.checkWinner(board, move) || columnWinningStrategy.checkWinner(board, move)
+//                || leftDiagonalWinningStrategy.checkWinner(board, move) || rightDiagonalWinningStrategy.checkWinner(board, move)) {
+//            this.gameStatus = GameStatus.WON;
+////            System.out.println("Player " + move.getPlayer().getName() + " has won the game!");
+//            return true;
+//        }
+        if(rowWinningStrategy.checkWinner(board, move)) {
+            System.out.println(move.getPlayer().getName() + " won by marking '" + move.getPlayer().getSym().getSymbolName() + "' in a row!");
+            return true;
+        } else if(columnWinningStrategy.checkWinner(board, move)) {
+            System.out.println(move.getPlayer().getName() + " won by marking '" + move.getPlayer().getSym().getSymbolName() + "' in a column!");
+            return true;
+        } else if(leftDiagonalWinningStrategy.checkWinner(board, move)) {
+            System.out.println(move.getPlayer().getName() + " won by marking '" + move.getPlayer().getSym().getSymbolName() + "' in the left diagonal!");
+            return true;
+        } else if(rightDiagonalWinningStrategy.checkWinner(board, move)) {
+            System.out.println(move.getPlayer().getName() + " won by marking '" + move.getPlayer().getSym().getSymbolName() + "' in the right diagonal!");
             return true;
         }
 
@@ -162,6 +181,27 @@ public class Game {
 //        }
 //        return true;
         return moves.size() == board.getSize() * board.getSize();
+    }
+
+    public boolean undoLastMove() {
+        if(moves.isEmpty()) {
+            System.out.println("There are no move to undo.");
+            return false;
+        }
+        Move move = moves.getLast();
+
+        board.getGrid().get(move.getCell().getRow()).get(move.getCell().getCol()).setPlayer(null);
+        board.getGrid().get(move.getCell().getRow()).get(move.getCell().getCol()).setCellType(CellType.EMPTY);
+        moves.remove(move);
+
+        // Propagate the changes to HashMaps of the Strategies as well
+        rowWinningStrategy.undoLastMove(board, move);
+        columnWinningStrategy.undoLastMove(board, move);
+        leftDiagonalWinningStrategy.undoLastMove(board, move);
+        rightDiagonalWinningStrategy.undoLastMove(board, move);
+
+        return true;
+
     }
 
 }

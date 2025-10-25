@@ -34,8 +34,13 @@ public class Player {
 
         System.out.println(this.getName() + ", it is your turn, mark with your '" + this.getSym().getSymbolName() + "' on the board.");
         System.out.println("Enter the row and column to place your symbol (0-indexed), separated by comma ',' :");
+        System.out.println("Alternatively, press 'Z' or 'z' if the other person wants to undo the last move");
         Scanner scanner = new Scanner(System.in);
         String rowAndCol = scanner.nextLine();
+        if(rowAndCol.equalsIgnoreCase("Z")) {
+//            return new Move(new Cell(-1, -1), null);
+            return null;
+        }
         String[] parts = rowAndCol.split(",");
         int row = Integer.parseInt(parts[0]);
         int col = Integer.parseInt(parts[1]);

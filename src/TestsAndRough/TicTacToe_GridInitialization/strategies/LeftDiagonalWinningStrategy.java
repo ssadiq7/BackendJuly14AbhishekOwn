@@ -30,4 +30,9 @@ public class LeftDiagonalWinningStrategy implements WinningStrategy {
         return false;
 
     }
+
+    @Override
+    public void undoLastMove(Board board, Move move) {
+
+    }
 }

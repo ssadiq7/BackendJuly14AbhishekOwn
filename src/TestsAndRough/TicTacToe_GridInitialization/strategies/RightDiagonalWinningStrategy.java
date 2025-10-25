@@ -30,4 +30,9 @@ public class RightDiagonalWinningStrategy implements WinningStrategy {
         return false;
 
     }
+
+    @Override
+    public void undoLastMove(Board board, Move move) {
+
+    }
 }

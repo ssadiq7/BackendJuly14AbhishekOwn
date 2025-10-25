@@ -62,6 +62,12 @@ public class Client {
 
             Move move = game.makeMove(currPlayerIndex);
 
+            if(move == null) {
+                if(game.undoLastMove())
+                    currPlayerIndex = game.switchPlayer(currPlayerIndex);
+                continue;
+            }
+
             try {
                 game.validateMove(move);
             } catch (InvalidMoveException e) {

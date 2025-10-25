@@ -89,7 +89,7 @@ public class Client {
 
 //            game.displayBoard();
 //            break; // Placeholder to avoid infinite loop in this example
-            currPlayerIndex = game.switchPlayer();
+            currPlayerIndex = game.switchPlayer(currPlayerIndex);
 
         }
 

@@ -32,7 +32,7 @@ public class Player {
 
     public Move makeMove(Board board) {
 
-        System.out.println(this.getName() + ", it is your turn, make your move.");
+        System.out.println(this.getName() + ", it is your turn, mark with your '" + this.getSym().getSymbolName() + "' on the board.");
         System.out.println("Enter the row and column to place your symbol (0-indexed), separated by comma ',' :");
         Scanner scanner = new Scanner(System.in);
         String rowAndCol = scanner.nextLine();
@@ -40,8 +40,8 @@ public class Player {
         int row = Integer.parseInt(parts[0]);
         int col = Integer.parseInt(parts[1]);
 
-        System.out.println("row: " + row);
-        System.out.println("col: " + col);
+//        System.out.println("row: " + row);
+//        System.out.println("col: " + col);
 
         return new Move(new Cell(row, col), this);
 

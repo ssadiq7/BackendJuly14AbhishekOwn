@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class RowWinningStrategy implements WinningStrategy {
 
-    private Map<Integer, Map<String, Integer>> rowCounts = new HashMap<>();
+    private final Map<Integer, Map<String, Integer>> rowMap = new HashMap<>();
 
     @Override
     public boolean checkWinner(Board board, Move move) {
@@ -16,10 +16,20 @@ public class RowWinningStrategy implements WinningStrategy {
         int row = move.getCell().getRow();
         String Symbol = move.getPlayer().getSym().getSymbolName();
 
-        rowCounts.computeIfAbsent(row, k -> new HashMap<>());
-        Map<String, Integer> symbolCountMap = rowCounts.get(row);
-        symbolCountMap.put(Symbol, symbolCountMap.getOrDefault(Symbol, 0) + 1);
-        return symbolCountMap.get(Symbol) == board.getSize();
+        if(!rowMap.containsKey(row)) {
+            rowMap.put(row, new HashMap<>());
+        }
+        if(!rowMap.get(row).containsKey(Symbol)) {
+            rowMap.get(row).put(Symbol, 0);
+        }
+        rowMap.get(row).put(Symbol, rowMap.get(row).get(Symbol) + 1);
+
+        return rowMap.get(row).get(Symbol) == board.getSize();
+
+//        rowCounts.computeIfAbsent(row, k -> new HashMap<>());
+//        Map<String, Integer> symbolCountMap = rowCounts.get(row);
+//        symbolCountMap.put(Symbol, symbolCountMap.getOrDefault(Symbol, 0) + 1);
+//        return symbolCountMap.get(Symbol) == board.getSize();
 
     }
 }

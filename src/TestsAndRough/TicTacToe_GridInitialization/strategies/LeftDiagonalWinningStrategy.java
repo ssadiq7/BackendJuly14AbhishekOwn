@@ -34,5 +34,15 @@ public class LeftDiagonalWinningStrategy implements WinningStrategy {
     @Override
     public void undoLastMove(Board board, Move move) {
 
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        String Symbol = move.getPlayer().getSym().getSymbolName();
+
+        if(row == col) {
+            System.out.println("Current count: " + playerMovesCount.get(Symbol));
+            playerMovesCount.put(Symbol, playerMovesCount.get(Symbol) - 1);
+            System.out.println("Count after undo operation: " + playerMovesCount.get(Symbol));
+        }
+
     }
 }

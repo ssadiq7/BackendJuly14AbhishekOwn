@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class ColumnWinningStrategy implements WinningStrategy {
 
-    private Map<Integer, Map<String, Integer>> colMap = new HashMap<>();
+    private final Map<Integer, Map<String, Integer>> colMap = new HashMap<>();
 
     @Override
     public boolean checkWinner(Board board, Move move) {
@@ -17,7 +17,7 @@ public class ColumnWinningStrategy implements WinningStrategy {
         String Symbol = move.getPlayer().getSym().getSymbolName();
 
         colMap.computeIfAbsent(col, k -> new HashMap<>());
-        Map<String, Integer> symbolCountMap = colMap.get(col);
+        Map<String, Integer> symbolCountMap = colMap.get(col); // Local variable for inner map
         symbolCountMap.put(Symbol, symbolCountMap.getOrDefault(Symbol, 0) + 1);
         return symbolCountMap.get(Symbol) == board.getSize();
 

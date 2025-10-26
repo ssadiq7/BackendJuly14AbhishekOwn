@@ -185,7 +185,7 @@ public class Game {
 
     public boolean undoLastMove() {
         if(moves.isEmpty()) {
-            System.out.println("There are no move to undo.");
+            System.out.println("There are no moves to undo.");
             return false;
         }
         Move move = moves.getLast();
